@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class GemPoint : MonoBehaviour
 {
-    public int _gemTimeSpawnStep;
     public Vector3 Position { get; private set; }
 
-    public bool IsUsed;
+    public bool IsUsed { get; private set; }
 
-    public void CreateGem(Gem gem)
+    public bool IsRespawn()
     {
-        if (IsUsed)
-        {
-            return;
-        }
-        else
-        {
-            Instantiate(gem, transform.position, Quaternion.identity);
-            IsUsed = true;
-        }
+        IsUsed = false;
+
+        return IsUsed;
+    }
+
+    public bool IsUse()
+    {
+        IsUsed = true;
+
+        return IsUsed;
     }
 }

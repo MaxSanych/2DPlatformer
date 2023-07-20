@@ -8,9 +8,9 @@ public class EnemieMovement : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
-    private int _changeDirectionIndex = -1;
-
     private bool _isRightMove;
+
+    private int _changeDirectionIndex = -1;
 
     private void Awake()
     {

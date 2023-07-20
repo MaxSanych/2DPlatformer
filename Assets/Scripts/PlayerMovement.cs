@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
         _isLeftMove = false;
         _isRightMove = true;
     }
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(_speed * Time.deltaTime, 0, 0);
-            _animator.SetTrigger("Run");
+            _animator.SetTrigger(AnimatorPlayerController.Parametrs.Run);
 
             if (_isLeftMove == true)
             {
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(_speed * Time.deltaTime * -1, 0, 0);
-            _animator.SetTrigger("Run");
+            _animator.SetTrigger(AnimatorPlayerController.Parametrs.Run);
 
             if (_isRightMove == true)
             {
@@ -57,16 +58,26 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(0, _speed * Time.deltaTime * 1, 0);
-            _animator.SetTrigger("Jump");
+            _animator.SetTrigger(AnimatorPlayerController.Parametrs.Jump);
         }
 
         if (Input.GetKeyUp(KeyCode.W))
-            _animator.ResetTrigger("Jump");
+            _animator.ResetTrigger(AnimatorPlayerController.Parametrs.Jump);
 
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
-            _animator.ResetTrigger("Run");
-            _animator.SetTrigger("Idle");
+            _animator.ResetTrigger(AnimatorPlayerController.Parametrs.Run);
+            _animator.SetTrigger(AnimatorPlayerController.Parametrs.Idle);
         }
+    }
+}
+
+public static class AnimatorPlayerController
+{
+    public static class Parametrs
+    {
+        public const string Idle = nameof(Idle);
+        public const string Run = nameof(Run);
+        public const string Jump = nameof(Jump);
     }
 }
